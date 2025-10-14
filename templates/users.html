@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="bg-white/10 rounded-2xl p-6 shadow-lg">
+  <h2 class="text-2xl font-semibold mb-4">Registered Users</h2>
+  <div class="overflow-x-auto rounded-2xl">
+    <table class="min-w-full text-left">
+      <thead class="bg-white/20">
+        <tr>
+          <th class="px-4 py-3">ID</th>
+          <th class="px-4 py-3">Name</th>
+          <th class="px-4 py-3">Account</th>
+          <th class="px-4 py-3">Balance</th>
+          <th class="px-4 py-3">Palm</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-white/10">
+        {% for u in users %}
+        <tr class="hover:bg-white/10">
+          <td class="px-4 py-3">{{ u[0] }}</td>
+          <td class="px-4 py-3">{{ u[1] }}</td>
+          <td class="px-4 py-3">{{ u[2] }}</td>
+          <td class="px-4 py-3">₹ {{ '%.2f'|format(u[3]) }}</td>
+          <td class="px-4 py-3">
+            {% if u[4] %}
+              <img class="w-24 h-16 object-cover rounded-xl" src="data:image/png;base64,{{ u[4] }}" alt="hand">
+            {% else %}
+              <span class="opacity-75">No image</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
